@@ -1,0 +1,38 @@
+.Plant-details {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 50px;
+}
+.Plant-img img {
+  width: 350px;
+}
+.Plant-detail {
+  display: grid;
+  grid-auto-columns: 1fr;
+  gap: 40px;
+}
+.Plants {
+  display: flex;
+  gap: 50px;
+  font-size: 20px;
+}
+.Plants :first-child {
+  width: 210px;
+}
+.Plants :last-child {
+  width: 60%;
+}
+.Plant_name {
+  font-weight: 700;
+}
+.Btn {
+  padding: 10px;
+  border-radius: 20px;
+  background-color: lightgreen;
+  width: 100px;
+  text-align: center;
+  font-size: 18px;
+  color: green;
+  font-weight: 600;
+}

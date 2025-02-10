@@ -1,0 +1,22 @@
+.home {
+  background-image: url("../assets/Cover1.png");
+  width: 135vw;
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 0 30px;
+  background-color: beige;
+}
+.home-para {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding-top: 5%;
+}
+.home-h {
+  font-size: 50px;
+}
+.home-h1 {
+  font-size: 80px;
+}

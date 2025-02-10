@@ -1,0 +1,17 @@
+.Nav {
+  padding: 15px 25px;
+  background-color: rgb(168, 255, 168);
+  color: rgb(6, 113, 6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.Heading {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-name {
+  text-decoration: none;
+  color: green;
+}
