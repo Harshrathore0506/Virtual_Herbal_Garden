@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import LoadingBar from "react-top-loading-bar";
 import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
 import { NavLink } from "react-router-dom";
@@ -6,24 +7,47 @@ import axios from "axios";
 
 const Garden1 = () => {
   const [plants, setPlants] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [showLoadingPage, setShowLoadingPage] = useState(true);
+  const loadingBar = useRef(null);
 
   useEffect(() => {
-    const fetchPlants = async () => {
-      try {
-        const response = await axios.get(
-          "http://localhost:5000/api/skin-herbs"
-        );
-        setPlants(response.data);
-      } catch (error) {
-        console.error("Error fetching plants:", error);
-      }
-    };
+    // Start loading bar and simulate progress
+    loadingBar.current.continuousStart();
 
-    fetchPlants();
+    // Show loading page for 5 seconds
+    const loadingTimeout = setTimeout(() => {
+      setShowLoadingPage(false);
+      fetchPlants();
+    }, 3000);
+
+    return () => clearTimeout(loadingTimeout);
   }, []);
 
-  if (!plants || plants.length === 0) {
-    return <p>Loading...</p>;
+  const fetchPlants = async () => {
+    try {
+      loadingBar.current.continuousStart(); // Restart progress bar
+      const response = await axios.get("http://localhost:5000/api/skin-herbs");
+      setPlants(response.data);
+      loadingBar.current.complete(); // Complete loading bar when data is loaded
+    } catch (error) {
+      console.error("Error fetching plants:", error);
+      setError("Failed to load plants. Please try again later.");
+      loadingBar.current.complete();
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  if (showLoadingPage) {
+    return (
+      <div className="loading-page">
+        <LoadingBar color="#f11946" ref={loadingBar} />
+        <h2>Loading your Virtual Herbal Garden...</h2>
+        <div className="spinner"></div>
+      </div>
+    );
   }
 
   return (
