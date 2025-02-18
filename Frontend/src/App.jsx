@@ -13,6 +13,12 @@ import Garden5 from "./Gardens/Garden5";
 import Garden6 from "./Gardens/Garden6";
 import Footer from "./Components/Footer";
 import PlantDetails from "./Pages/PlantDetails";
+import PlantDetails1 from "./Pages/PlantDetails1";
+import PlantDetails2 from "./Pages/PlantDetails2";
+import PlantDetails3 from "./Pages/plantDetails3";
+import PlantDetails4 from "./Pages/PlantDetails4";
+import PlantDetails5 from "./Pages/PlantDetails5";
+
 function App() {
   return (
     <>
@@ -27,7 +33,12 @@ function App() {
         <Route path="/Garden4" element={<Garden4 />} />
         <Route path="/Garden5" element={<Garden5 />} />
         <Route path="/Garden6" element={<Garden6 />} />
-        <Route path="/PlantDetails" element={<PlantDetails />} />
+        <Route path="/plant/:id" element={<PlantDetails />} />
+        <Route path="/plant1/:id" element={<PlantDetails1 />} />
+        <Route path="/plant2/:id" element={<PlantDetails2 />} />
+        <Route path="/plant3/:id" element={<PlantDetails3 />} />
+        <Route path="/plant4/:id" element={<PlantDetails4 />} />
+        <Route path="/plant5/:id" element={<PlantDetails5 />} />
       </Routes>
       <Footer />
     </>

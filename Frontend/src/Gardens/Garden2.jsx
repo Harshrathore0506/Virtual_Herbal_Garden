@@ -1,67 +1,47 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 const Garden2 = () => {
+  const [plants, setPlants] = useState([]);
+
+  useEffect(() => {
+    const fetchPlants = async () => {
+      try {
+        const response = await axios.get(
+          "http://localhost:5000/api/digestion-herbs"
+        );
+        setPlants(response.data);
+      } catch (error) {
+        console.error("Error fetching plants:", error);
+      }
+    };
+
+    fetchPlants();
+  }, []);
+
+  if (!plants || plants.length === 0) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="garden-area" id="Garden">
-      <img className="garden-img " src={GardensImage} alt="" />
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img">
-          <img className="small-img" src={leaf} alt="" />
-          <div className="hover-text">Chamomile</div>
-        </div>
-      </NavLink>
-      {/* ============================================================================================================= */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img1">
-          <img className="small-img1" src={leaf} alt="" />
-          <div className="hover-text1">Ginger</div>
-        </div>
-      </NavLink>
-      {/* ==================================================================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img2">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Peppermint</div>
-        </div>
-      </NavLink>
-      {/* =============================================================================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img3">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Amla</div>
-        </div>
-      </NavLink>
-      {/* ========================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img4">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Coriander</div>
-        </div>
-      </NavLink>
-      {/* ============================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img5">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Ganga Tulasi</div>
-        </div>
-      </NavLink>
-      {/* ============================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img6">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Cinnamon</div>
-        </div>
-      </NavLink>
-      {/* ============================================================== */}
-      <NavLink to="/PlantDetails" className="nav-name">
-        <div className="hover-img7">
-          <img className="small-img2" src={leaf} alt="" />
-          <div className="hover-text2">Psyllium Husk</div>
-        </div>
-      </NavLink>
+      <img className="garden-img" src={GardensImage} alt="Garden" />
+
+      {plants.map((plant, index) => (
+        <NavLink
+          key={plant._id}
+          to={`/plant2/${plant._id}`}
+          className="nav-name"
+        >
+          <div className={`hover-img${index}`}>
+            <img className="small-img" src={leaf} alt="Leaf icon" />
+            <div className="hover-text">{plant.Name}</div>
+          </div>
+        </NavLink>
+      ))}
     </div>
   );
 };

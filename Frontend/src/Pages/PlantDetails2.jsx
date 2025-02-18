@@ -3,9 +3,8 @@ import "./PlantDetails.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
-const PlantDetails = () => {
+const PlantDetails2 = () => {
   const { id } = useParams(); // Get plant name from URL
-
   const [herb, setHerb] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -14,10 +13,9 @@ const PlantDetails = () => {
     const fetchHerb = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/cardiovascular-herbs/${id}`
+          `http://localhost:5000/api/digestion-herbs/${id}`
         );
         setHerb(response.data);
-        console.log(response.data);
       } catch (err) {
         // console.log({ id }, "error");
       }
@@ -29,7 +27,6 @@ const PlantDetails = () => {
   if (!herb || herb.length === 0) {
     return <p>Loading...</p>; // Prevents error while data loads
   }
-  // console.log(herb);
 
   return (
     <div className="Plant-details">
@@ -71,4 +68,4 @@ const PlantDetails = () => {
   );
 };
 
-export default PlantDetails;
+export default PlantDetails2;

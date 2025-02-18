@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Garden.css";
-import Gardens from "../assets/Garden2.png";
-import leaf from "../assets/leaf.png";
 import Garden1 from "../Gardens/Garden1";
 import Garden2 from "../Gardens/Garden2";
 import Garden3 from "../Gardens/Garden3";
@@ -11,7 +9,6 @@ import Garden6 from "../Gardens/Garden6";
 
 const Garden = () => {
   const [gardenName, setGardenName] = useState("Skin");
-
   const renderContent = () => {
     switch (gardenName) {
       case "Skin":
@@ -32,28 +29,59 @@ const Garden = () => {
   return (
     <div className="garden">
       <div className="garden-type">
-        <button onClick={() => setGardenName("Skin")} className="garden-p">
+        <button
+          onClick={() => setGardenName("Skin")}
+          style={{
+            border: gardenName === "Skin" ? "5px solid green" : "none",
+          }}
+          className="garden-p"
+        >
           Skin Care
         </button>
-        <button onClick={() => setGardenName("Digestive")} className="garden-p">
+        <button
+          onClick={() => setGardenName("Digestive")}
+          style={{
+            border: gardenName === "Digestive" ? "5px solid green" : "none",
+          }}
+          className="garden-p"
+        >
           Digestive System
         </button>
         <button
           onClick={() => setGardenName("Respiratory")}
           className="garden-p"
+          style={{
+            border: gardenName === "Respiratory" ? "5px solid green" : "none",
+          }}
         >
           Respiratory System
         </button>
         <button
           onClick={() => setGardenName("Cardiovascular")}
           className="garden-p"
+          style={{
+            border:
+              gardenName === "Cardiovascular" ? "5px solid green" : "none",
+          }}
         >
           Cardiovascular System
         </button>
-        <button onClick={() => setGardenName("Nervous")} className="garden-p">
+        <button
+          onClick={() => setGardenName("Nervous")}
+          style={{
+            border: gardenName === "Nervous" ? "5px solid green" : "none",
+          }}
+          className="garden-p"
+        >
           Nerous System
         </button>
-        <button onClick={() => setGardenName("")} className="garden-p">
+        <button
+          onClick={() => setGardenName("")}
+          style={{
+            border: gardenName === "" ? "5px solid green" : "none",
+          }}
+          className="garden-p"
+        >
           Immune System
         </button>
       </div>

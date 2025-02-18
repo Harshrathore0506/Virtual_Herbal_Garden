@@ -36,7 +36,9 @@
   height: 100%;
 }
 
-.hover-img {
+/* =================== */
+
+.hover-img0 {
   height: 10%;
   width: 10%;
   position: absolute;
@@ -68,22 +70,10 @@
   font-size: 20px;
 }
 
-.hover-img:hover .hover-text {
+.hover-img0:hover .hover-text {
   visibility: visible;
 }
 /* ================================================================================================= */
-
-.img-hovering1 {
-  width: 800px;
-  height: 800px;
-  position: relative;
-  display: inline-block;
-}
-
-.main-img1 {
-  width: 100%;
-  height: 100%;
-}
 
 .hover-img1 {
   height: 10%;
@@ -94,44 +84,10 @@
   display: inline-block;
 }
 
-.small-img1 {
-  height: 100%;
-  animation: pulse 1s infinite alternate ease-in-out;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.2);
-  }
-}
-
-.hover-text1 {
-  visibility: hidden;
-  background-color: beige;
-  padding: 5px;
-  border-radius: 20px;
-  font-size: 20px;
-}
-
-.hover-img1:hover .hover-text1 {
+.hover-img1:hover .hover-text {
   visibility: visible;
 }
 /* ============================================================================== */
-.img-hovering2 {
-  width: 800px;
-  height: 800px;
-  position: relative;
-  display: inline-block;
-}
-
-.main-img2 {
-  width: 100%;
-  height: 100%;
-}
 
 .hover-img2 {
   height: 10%;
@@ -142,30 +98,7 @@
   display: inline-block;
 }
 
-.small-img2 {
-  height: 100%;
-  animation: pulse 1s infinite alternate ease-in-out;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-
-  100% {
-    transform: scale(1.2);
-  }
-}
-
-.hover-text2 {
-  visibility: hidden;
-  background-color: beige;
-  padding: 5px;
-  border-radius: 20px;
-  font-size: 20px;
-}
-
-.hover-img2:hover .hover-text2 {
+.hover-img2:hover .hover-text {
   visibility: visible;
 }
 /* ========================================= */
@@ -177,7 +110,7 @@
   left: 25%;
   display: inline-block;
 }
-.hover-img3:hover .hover-text2 {
+.hover-img3:hover .hover-text {
   visibility: visible;
 }
 /* ========================================== */
@@ -189,7 +122,7 @@
   left: 50%;
   display: inline-block;
 }
-.hover-img4:hover .hover-text2 {
+.hover-img4:hover .hover-text {
   visibility: visible;
 }
 /* ========================================== */
@@ -201,7 +134,7 @@
   right: 23%;
   display: inline-block;
 }
-.hover-img5:hover .hover-text2 {
+.hover-img5:hover .hover-text {
   visibility: visible;
 }
 /* ========================================== */
@@ -213,7 +146,7 @@
   right: 30%;
   display: inline-block;
 }
-.hover-img6:hover .hover-text2 {
+.hover-img6:hover .hover-text {
   visibility: visible;
 }
 /* ========================================== */
@@ -225,6 +158,6 @@
   left: 30%;
   display: inline-block;
 }
-.hover-img7:hover .hover-text2 {
+.hover-img7:hover .hover-text {
   visibility: visible;
 }
