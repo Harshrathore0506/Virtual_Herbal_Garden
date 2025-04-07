@@ -8,7 +8,6 @@ import SkinHerb from "../models/SkinHerb.js";
 const cardiovascular = async (req, res) => {
   try {
     const herbs = await CardiovascularHerb.find();
-    console.log("✅ Fetched Herbs:", herbs);
 
     if (herbs.length === 0) {
       console.warn("⚠️ No Data Found in cardiovascular_herbs collection");

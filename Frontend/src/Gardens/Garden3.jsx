@@ -20,7 +20,7 @@ const Garden3 = () => {
     const loadingTimeout = setTimeout(() => {
       setShowLoadingPage(false);
       fetchPlants();
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(loadingTimeout);
   }, []);

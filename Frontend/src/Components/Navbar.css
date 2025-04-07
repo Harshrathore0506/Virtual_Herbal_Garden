@@ -1,7 +1,6 @@
 .Nav {
   padding: 15px 25px;
-  background-color: rgb(168, 255, 168);
-  color: rgb(6, 113, 6);
+  background-color: rgb(59, 148, 59);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -9,9 +8,39 @@
 .Heading {
   display: flex;
   gap: 30px;
+  align-items: center;
 }
 
 .nav-name {
   text-decoration: none;
-  color: green;
+  color: white;
+  font-size: 18px;
+}
+.nav-name i {
+  font-size: 30px;
+  color: white;
+}
+/* Navbar Styles */
+.navbar {
+  position: fixed; /* Fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Full width */ /* Dark background */
+  padding: 15px 20px; /* Some padding for the navbar */
+  z-index: 10; /* Ensure navbar is on top */
+  box-shadow: 0 4px 2px -2px gray; /* Optional: shadow for a sleek effect */
+}
+.log-img {
+  width: 30px;
+  filter: invert(1);
+}
+.auth-img {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+}
+
+.auth-img:hover {
+  transform: scale(1.1);
 }

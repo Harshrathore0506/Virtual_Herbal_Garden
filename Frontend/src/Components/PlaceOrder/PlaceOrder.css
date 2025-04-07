@@ -1,0 +1,91 @@
+/* PlaceOrder.css */
+
+/* Layout */
+.place-order-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-top: 1.25rem;
+  min-height: 80vh;
+  border-top: 1px solid #ddd;
+}
+
+@media (min-width: 640px) {
+  .place-order-form {
+    flex-direction: row;
+    padding-top: 3.5rem;
+  }
+}
+
+/* Left Side - Delivery Information */
+.delivery-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 440px;
+  margin-left: 10%;
+  margin-bottom: 5%;
+}
+
+.delivery-section input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  gap: 0.75rem;
+  width: 475px;
+}
+
+/* Right Side - Cart & Payment */
+.right-section {
+  margin-top: 9rem;
+  min-width: 80px;
+  margin-right: 20%;
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+@media (min-width: 1024px) {
+  .payment-methods {
+    flex-direction: row;
+  }
+}
+
+.payment-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border: 1px solid #ddd;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.selected-method {
+  background-color: #4caf50;
+}
+
+.payment-option img {
+  height: 1.25rem;
+  margin-left: 1rem;
+}
+
+.place-order-btn {
+  background-color: black;
+  color: white;
+  padding: 0.75rem 4rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: center;
+  display: inline-block;
+  margin-top: 2rem;
+}

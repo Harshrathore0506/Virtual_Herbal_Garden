@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import LoadingBar from "react-top-loading-bar";
 import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
@@ -11,6 +11,7 @@ const Garden1 = () => {
   const [error, setError] = useState(null);
   const [showLoadingPage, setShowLoadingPage] = useState(true);
   const loadingBar = useRef(null);
+  // const { backendUrl } = useContext(ShopContext);
 
   useEffect(() => {
     // Start loading bar and simulate progress
@@ -20,7 +21,7 @@ const Garden1 = () => {
     const loadingTimeout = setTimeout(() => {
       setShowLoadingPage(false);
       fetchPlants();
-    }, 3000);
+    }, 1000);
 
     return () => clearTimeout(loadingTimeout);
   }, []);

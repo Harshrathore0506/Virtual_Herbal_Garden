@@ -1,0 +1,31 @@
+/* CartTotal.css */
+
+.cart-total-container {
+  width: 100%;
+}
+
+.cart-total-title {
+  font-size: 1.5rem;
+}
+
+.cart-total-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+}
+
+.cart-total-row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart-total-separator {
+  border-top: 1px solid #ddd;
+  margin: 0.25rem 0;
+}
+
+.cart-total-bold {
+  font-weight: bold;
+}

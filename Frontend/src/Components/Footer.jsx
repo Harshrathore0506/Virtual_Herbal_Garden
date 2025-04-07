@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="footer">
       <div className="footer-top">
         <h1>
-          <NavLink to="/" className="nav-name">
+          <NavLink to="/" className="foot-name">
             <i>Virtual Garden</i>
           </NavLink>
         </h1>

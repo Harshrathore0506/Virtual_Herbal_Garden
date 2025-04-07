@@ -4,6 +4,7 @@ import "dotenv/config";
 import connectDBS from "./config/mongodb.js";
 const app = express();
 const port = process.env.PORT || 5000;
+
 connectDBS();
 
 app.use(express.json());
@@ -28,6 +29,26 @@ import {
   SingleRespiratory,
 } from "./controllers/SingleController.js";
 
+import {
+  loginUser,
+  registerUser,
+  adminLogin,
+} from "./controllers/userController.js";
+
+import {
+  placeOrder,
+  allOrders,
+  userOrders,
+  updateStatus,
+} from "./controllers/orderController.js";
+import adminAuth from "./Middleware/adminAuth.js";
+import authUser from "./Middleware/auth.js";
+
+import {
+  addToCart,
+  getUserCart,
+  updateCart,
+} from "./controllers/cartController.js";
 // Define schema for the collection (Dynamic Schema)
 
 // ================================================================================================================
@@ -45,6 +66,25 @@ app.get("/api/immune-herbs/:id", SingleImmune);
 app.get("/api/respiratory-herbs/:id", SingleRespiratory);
 app.get("/api/nervous-herbs/:id", SingleNervous);
 app.get("/api/digestion-herbs/:id", SingleDigestion);
+
+// Login
+app.post("/api/user/register", registerUser);
+app.post("/api/user/login", loginUser);
+app.post("/api/user/admin", adminLogin);
+
+//Admin Features
+app.post("/api/order/list", adminAuth, allOrders);
+app.post("/api/order/status", adminAuth, updateStatus);
+
+//Payment Features
+app.post("/api/order/place", authUser, placeOrder);
+
+//User Features
+app.post("/api/order/userorders", authUser, userOrders);
+
+app.post("/api/cart/get", authUser, getUserCart);
+app.post("/api/cart/add", authUser, addToCart);
+app.post("/api/cart/update", authUser, updateCart);
 
 app.get("/", (req, res) => {
   res.send("API Working");

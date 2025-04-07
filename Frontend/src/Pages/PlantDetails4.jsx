@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./PlantDetails.css";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import { ShopContext } from "../Context/ShopContext";
+import { toast } from "react-toastify";
 
 const PlantDetails4 = () => {
   const { id } = useParams(); // Get plant name from URL
+  const { addToCart } = useContext(ShopContext);
   const [herb, setHerb] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  console.log(id);
+  const [size, setsize] = useState("M");
+
   useEffect(() => {
     const fetchHerb = async () => {
       try {
@@ -62,7 +66,9 @@ const PlantDetails4 = () => {
           <p>Climatic Conditions :</p>
           <p>{herb.Climate_conditions}</p>
         </div>
-        <div className="Btn">Buy Now</div>
+        <div className="Btn" onClick={() => addToCart(id, size)}>
+          Buy Now
+        </div>
       </div>
     </div>
   );
