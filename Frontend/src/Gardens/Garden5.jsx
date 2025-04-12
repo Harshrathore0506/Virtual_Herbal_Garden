@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import LoadingBar from "react-top-loading-bar";
 import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { ShopContext } from "../Context/ShopContext";
 
 const Garden5 = () => {
   const [plants, setPlants] = useState([]);
@@ -11,6 +12,7 @@ const Garden5 = () => {
   const [error, setError] = useState(null);
   const [showLoadingPage, setShowLoadingPage] = useState(true);
   const loadingBar = useRef(null);
+  const { backendUrl } = useContext(ShopContext);
 
   useEffect(() => {
     // Start loading bar and simulate progress
@@ -27,9 +29,7 @@ const Garden5 = () => {
 
   const fetchPlants = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/nervous-herbs"
-      );
+      const response = await axios.get(backendUrl + "/nervous-herbs");
       setPlants(response.data);
     } catch (error) {
       console.error("Error fetching plants:", error);

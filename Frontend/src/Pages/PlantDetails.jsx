@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const PlantDetails = () => {
   const { id } = useParams(); // Get plant name from URL
-  const { addToCart } = useContext(ShopContext);
+  const { addToCart, backendUrl } = useContext(ShopContext);
   const [herb, setHerb] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -17,7 +17,7 @@ const PlantDetails = () => {
     const fetchHerb = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/api/cardiovascular-herbs/${id}`
+          backendUrl + `/cardiovascular-herbs/${id}`
         );
         setHerb(response.data);
         console.log(response.data);

@@ -1,8 +1,7 @@
 .home {
   background-image: url("../assets/Cover1.png");
-  width: 135vw;
   height: 100vh;
-  background-position: center;
+  background-position: right;
   background-repeat: no-repeat;
   padding: 0 30px;
   background-color: beige;

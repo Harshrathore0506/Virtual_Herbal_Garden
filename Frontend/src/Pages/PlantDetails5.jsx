@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const PlantDetails5 = () => {
   const { id } = useParams(); // Get plant name from URL
   const [herb, setHerb] = useState(null);
-  const { addToCart } = useContext(ShopContext);
+  const { addToCart, backendUrl } = useContext(ShopContext);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [size, setsize] = useState("M");
@@ -16,9 +16,7 @@ const PlantDetails5 = () => {
   useEffect(() => {
     const fetchHerb = async () => {
       try {
-        const response = await axios.get(
-          `http://localhost:5000/api/immune-herbs/${id}`
-        );
+        const response = await axios.get(backendUrl + `/immune-herbs/${id}`);
         setHerb(response.data);
       } catch (err) {
         // console.log({ id }, "error");

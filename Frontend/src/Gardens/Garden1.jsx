@@ -4,6 +4,7 @@ import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { ShopContext } from "../Context/ShopContext";
 
 const Garden1 = () => {
   const [plants, setPlants] = useState([]);
@@ -11,7 +12,7 @@ const Garden1 = () => {
   const [error, setError] = useState(null);
   const [showLoadingPage, setShowLoadingPage] = useState(true);
   const loadingBar = useRef(null);
-  // const { backendUrl } = useContext(ShopContext);
+  const { backendUrl } = useContext(ShopContext);
 
   useEffect(() => {
     // Start loading bar and simulate progress
@@ -29,7 +30,7 @@ const Garden1 = () => {
   const fetchPlants = async () => {
     try {
       loadingBar.current.continuousStart(); // Restart progress bar
-      const response = await axios.get("http://localhost:5000/api/skin-herbs");
+      const response = await axios.get(backendUrl + "/skin-herbs");
       setPlants(response.data);
       loadingBar.current.complete(); // Complete loading bar when data is loaded
     } catch (error) {

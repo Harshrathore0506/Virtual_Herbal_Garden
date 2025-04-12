@@ -2,19 +2,31 @@ import React, { useContext } from "react";
 import "./Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 import Log from "../assets/avatar.png";
-import cartlogo from "../assets/grocery-store.png";
-import Home from "../assets/home.png";
-import Contact from "../assets/phone.png";
-import orderCart from "../assets/shopping-cart.png";
 import { ShopContext } from "../Context/ShopContext";
+import Swal from "sweetalert2";
 const Navbar = () => {
   const { navigate, token, setToken } = useContext(ShopContext);
 
-  const logout = () => {
-    navigate("/login");
-    localStorage.removeItem("token");
-    setToken("");
+  const handleLogout = () => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You will be logged out of your account.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Yes, logout",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Actual logout logic here
+        navigate("/login");
+        localStorage.removeItem("token");
+        setToken("");
+        console.log("Logged out");
+      }
+    });
   };
+
   return (
     <div className="nav">
       <div className="Nav">
@@ -40,7 +52,7 @@ const Navbar = () => {
             {/* Login/Logout Icon */}
             {token ? (
               <img
-                onClick={logout}
+                onClick={handleLogout}
                 className="auth-img log-img"
                 src={Log}
                 alt="Logout Icon"

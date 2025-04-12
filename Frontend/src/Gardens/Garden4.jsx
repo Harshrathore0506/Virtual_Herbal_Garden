@@ -4,12 +4,15 @@ import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { ShopContext } from "../Context/ShopContext";
 
 const Garden4 = () => {
   const [plants, setPlants] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showLoadingPage, setShowLoadingPage] = useState(true);
+  const { backendUrl } = useContext(ShopContext);
   const loadingBar = useRef(null);
 
   useEffect(() => {
@@ -27,9 +30,7 @@ const Garden4 = () => {
 
   const fetchPlants = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/cardiovascular-herbs"
-      );
+      const response = await axios.get(backendUrl + "/cardiovascular-herbs");
       setPlants(response.data);
     } catch (error) {
       console.error("Error fetching plants:", error);

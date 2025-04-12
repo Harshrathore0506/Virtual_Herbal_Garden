@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import LoadingBar from "react-top-loading-bar";
 import GardensImage from "../assets/Garden2.png";
 import leaf from "../assets/leaf.png";
 import { NavLink } from "react-router-dom";
+
 import axios from "axios";
+import { ShopContext } from "../Context/ShopContext";
 
 const Garden6 = () => {
   const [plants, setPlants] = useState([]);
+  const { backendUrl } = useContext(ShopContext);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [showLoadingPage, setShowLoadingPage] = useState(true);
@@ -27,9 +30,7 @@ const Garden6 = () => {
 
   const fetchPlants = async () => {
     try {
-      const response = await axios.get(
-        "http://localhost:5000/api/immune-herbs"
-      );
+      const response = await axios.get(backendUrl + "/immune-herbs");
       setPlants(response.data);
     } catch (error) {
       console.error("Error fetching plants:", error);

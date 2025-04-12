@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Cart.css";
 import { ShopContext } from "../../Context/ShopContext";
 import CartTotal from "../CartTotal/CartTotal";
-import doneBtn from "../../assets/check.png";
+import bin from "../../assets/bin.png";
 
 const Cart = () => {
   const [cartData, setCartData] = useState([]);
@@ -63,6 +63,12 @@ const Cart = () => {
                     type="number"
                     min={1}
                     defaultValue={item.quantity}
+                  />
+                  <img
+                    onClick={() => updateQuantity(item._id, item.size, 0)}
+                    className="bin"
+                    src={bin}
+                    alt=""
                   />
                 </div>
               </div>
