@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       if (currentState === "Sign Up") {
-        const response = await axios.post(backendUrl + "/user/register", {
+        const response = await axios.post(backendUrl + "/api/user/register", {
           name,
           email,
           password,
@@ -36,7 +36,7 @@ const Login = () => {
           setPassword("");
         }
       } else {
-        const response = await axios.post(backendUrl + "/user/login", {
+        const response = await axios.post(backendUrl + "/api/user/login", {
           email,
           password,
         });

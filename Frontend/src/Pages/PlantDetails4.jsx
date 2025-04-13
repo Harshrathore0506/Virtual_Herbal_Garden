@@ -16,7 +16,9 @@ const PlantDetails4 = () => {
   useEffect(() => {
     const fetchHerb = async () => {
       try {
-        const response = await axios.get(backendUrl + `/nervous-herbs/${id}`);
+        const response = await axios.get(
+          backendUrl + `/api/nervous-herbs/${id}`
+        );
         setHerb(response.data);
       } catch (err) {
         // console.log({ id }, "error");

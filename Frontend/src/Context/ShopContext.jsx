@@ -30,7 +30,7 @@ const ShopContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(
-          backendUrl + "/cart/add",
+          backendUrl + "/api/cart/add",
           { itemId, size },
           { headers: { token } }
         );
@@ -65,7 +65,7 @@ const ShopContextProvider = (props) => {
     if (token) {
       try {
         await axios.post(
-          backendUrl + "/cart/update",
+          backendUrl + "/api/cart/update",
           { itemId, size, quantity },
           { headers: { token } }
         );
@@ -94,7 +94,7 @@ const ShopContextProvider = (props) => {
   const getUserCart = async (token) => {
     try {
       const response = await axios.post(
-        backendUrl + "/cart/get",
+        backendUrl + "/api/cart/get",
         {},
         { headers: { token } }
       );
@@ -109,12 +109,12 @@ const ShopContextProvider = (props) => {
 
   const getProductData = async () => {
     try {
-      const plant1 = await axios.get(backendUrl + "/cardiovascular-herbs");
-      const plant2 = await axios.get(backendUrl + "/skin-herbs");
-      const plant3 = await axios.get(backendUrl + "/digestion-herbs");
-      const plant4 = await axios.get(backendUrl + "/respiratory-herbs");
-      const plant5 = await axios.get(backendUrl + "/nervous-herbs");
-      const plant6 = await axios.get(backendUrl + "/immune-herbs");
+      const plant1 = await axios.get(backendUrl + "/api/cardiovascular-herbs");
+      const plant2 = await axios.get(backendUrl + "/api/skin-herbs");
+      const plant3 = await axios.get(backendUrl + "/api/digestion-herbs");
+      const plant4 = await axios.get(backendUrl + "/api/respiratory-herbs");
+      const plant5 = await axios.get(backendUrl + "/api/nervous-herbs");
+      const plant6 = await axios.get(backendUrl + "/api/immune-herbs");
 
       setProducts([
         ...plant1.data,

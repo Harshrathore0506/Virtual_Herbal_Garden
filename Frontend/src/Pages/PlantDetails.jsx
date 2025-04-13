@@ -17,7 +17,7 @@ const PlantDetails = () => {
     const fetchHerb = async () => {
       try {
         const response = await axios.get(
-          backendUrl + `/cardiovascular-herbs/${id}`
+          backendUrl + `/api/cardiovascular-herbs/${id}`
         );
         setHerb(response.data);
         console.log(response.data);

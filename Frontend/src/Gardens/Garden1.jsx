@@ -30,7 +30,7 @@ const Garden1 = () => {
   const fetchPlants = async () => {
     try {
       loadingBar.current.continuousStart(); // Restart progress bar
-      const response = await axios.get(backendUrl + "/skin-herbs");
+      const response = await axios.get(backendUrl + "/api/skin-herbs");
       setPlants(response.data);
       loadingBar.current.complete(); // Complete loading bar when data is loaded
     } catch (error) {
