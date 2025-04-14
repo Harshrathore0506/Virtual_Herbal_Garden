@@ -1,6 +1,7 @@
 import userModel from "../models/userSchema.js";
 import validator from "validator";
 import * as argon2 from "argon2-browser";
+import crypto from "crypto"; // ✅ Node.js crypto module
 import jwt from "jsonwebtoken";
 
 const createToken = (id) => {
@@ -27,7 +28,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const salt = crypto.randomBytes(16); // ✅ Secure salt for argon2-browser
     const hash = await argon2.hash({ pass: password, salt });
     const hashedPassword = hash.encoded;
 
