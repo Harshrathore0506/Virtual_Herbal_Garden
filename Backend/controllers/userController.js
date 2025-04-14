@@ -1,6 +1,6 @@
 import userModel from "../models/userSchema.js";
 import validator from "validator";
-import argon2 from "argon2";
+import * as argon2 from "argon2-browser";
 import jwt from "jsonwebtoken";
 
 const createToken = (id) => {
@@ -19,6 +19,7 @@ const registerUser = async (req, res) => {
     if (!validator.isEmail(email)) {
       return res.json({ success: false, message: "Please Enter Valid Email" });
     }
+
     if (password.length < 8) {
       return res.json({
         success: false,
@@ -26,7 +27,9 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const hashedPassword = await argon2.hash(password);
+    const salt = crypto.getRandomValues(new Uint8Array(16));
+    const hash = await argon2.hash({ pass: password, salt });
+    const hashedPassword = hash.encoded;
 
     const newUser = new userModel({
       name,
@@ -35,7 +38,6 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-
     const token = createToken(user._id);
     res.json({ success: true, token });
   } catch (error) {
@@ -47,12 +49,13 @@ const registerUser = async (req, res) => {
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.json({ success: false, message: "User doesn't exist" });
     }
 
-    const isMatch = await argon2.verify(user.password, password);
+    const isMatch = await argon2.verify({ pass: password, encoded: user.password });
     if (isMatch) {
       const token = createToken(user._id);
       res.json({ success: true, token, message: "Successful" });
@@ -68,6 +71,7 @@ const loginUser = async (req, res) => {
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
