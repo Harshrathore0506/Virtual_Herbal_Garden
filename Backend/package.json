@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node server.js",
     "server": "nodemon server.js",
+    "postinstall": "npm install bcryptjs",
     "build": "echo \"No build step necessary for backend\""
   },
   "keywords": [],
