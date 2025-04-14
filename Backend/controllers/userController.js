@@ -1,6 +1,6 @@
 import userModel from "../models/userSchema.js";
 import validator from "validator";
-import * as bcrypt from 'bcryptjs';
+import argon2 from "argon2";
 import jwt from "jsonwebtoken";
 
 const createToken = (id) => {
@@ -25,8 +25,9 @@ const registerUser = async (req, res) => {
         message: "Please enter a strong password",
       });
     }
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const hashedPassword = await argon2.hash(password);
+
     const newUser = new userModel({
       name,
       email,
@@ -42,26 +43,28 @@ const registerUser = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.json({ success: false, message: "User doesn't exists" });
+      return res.json({ success: false, message: "User doesn't exist" });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
 
+    const isMatch = await argon2.verify(user.password, password);
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ success: true, token, message: "Successfull" });
+      res.json({ success: true, token, message: "Successful" });
     } else {
-      res.json({ success: false, message: "Invaild credentials" });
+      res.json({ success: false, message: "Invalid credentials" });
     }
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
+
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -70,9 +73,9 @@ const adminLogin = async (req, res) => {
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_S);
-      res.json({ success: true, token, message: "Successfull admin" });
+      res.json({ success: true, token, message: "Successful admin" });
     } else {
-      res.json({ success: false, message: "Invaild Credentials" });
+      res.json({ success: false, message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
