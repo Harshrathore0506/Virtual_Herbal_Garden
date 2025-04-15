@@ -34,11 +34,6 @@ const Content = () => {
       </div>
       <div className="contact-section">
         <div className="contact-left">
-          <p>
-            I'm currently avaliable to take on new projects, so feel free to
-            send me a message about anything that you want me to work on. You
-            can contact anytime.
-          </p>
           <div className="contact-details">
             <div className="contact-detail">
               <img src={mail_icon} alt="" />
