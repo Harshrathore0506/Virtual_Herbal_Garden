@@ -1,6 +1,7 @@
 import userModel from "../models/userSchema.js";
 import validator from "validator";
-import bcrypt from "bcrypt";
+import * as argon2 from "argon2-browser";
+import crypto from "crypto"; // ✅ Node.js crypto module
 import jwt from "jsonwebtoken";
 
 const createToken = (id) => {
@@ -19,6 +20,7 @@ const registerUser = async (req, res) => {
     if (!validator.isEmail(email)) {
       return res.json({ success: false, message: "Please Enter Valid Email" });
     }
+
     if (password.length < 8) {
       return res.json({
         success: false,
@@ -26,8 +28,9 @@ const registerUser = async (req, res) => {
       });
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+    const salt = crypto.randomBytes(16); // ✅ Secure salt for argon2-browser
+    const hash = await argon2.hash({ pass: password, salt });
+    const hashedPassword = hash.encoded;
 
     const newUser = new userModel({
       name,
@@ -36,7 +39,6 @@ const registerUser = async (req, res) => {
     });
 
     const user = await newUser.save();
-
     const token = createToken(user._id);
     res.json({ success: true, token });
   } catch (error) {
@@ -44,36 +46,41 @@ const registerUser = async (req, res) => {
     res.json({ success: false, message: error.message });
   }
 };
+
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     const user = await userModel.findOne({ email });
     if (!user) {
-      return res.json({ success: false, message: "User doesn't exists" });
+      return res.json({ success: false, message: "User doesn't exist" });
     }
-    const isMatch = await bcrypt.compare(password, user.password);
+
+    const isMatch = await argon2.verify({ pass: password, encoded: user.password });
     if (isMatch) {
       const token = createToken(user._id);
-      res.json({ success: true, token, message: "Successfull" });
+      res.json({ success: true, token, message: "Successful" });
     } else {
-      res.json({ success: false, message: "Invaild credentials" });
+      res.json({ success: false, message: "Invalid credentials" });
     }
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
+
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_S);
-      res.json({ success: true, token, message: "Successfull admin" });
+      res.json({ success: true, token, message: "Successful admin" });
     } else {
-      res.json({ success: false, message: "Invaild Credentials" });
+      res.json({ success: false, message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
