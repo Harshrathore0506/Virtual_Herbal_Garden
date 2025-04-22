@@ -12,6 +12,7 @@ const ShopContextProvider = (props) => {
   const [token, setToken] = useState("");
   const [cartItems, setCartItems] = useState({}); //Empty Object
   const [products, setProducts] = useState([]);
+  const [skinPlant, setskinPlant] = useState([]);
 
   const addToCart = async (itemId, size) => {
     let cartData = structuredClone(cartItems); //Create Copy of Cart Item
@@ -113,6 +114,7 @@ const ShopContextProvider = (props) => {
         backendUrl + "/api/plants/cardiovascular-herbs"
       );
       const plant2 = await axios.get(backendUrl + "/api/plants/skin-herbs");
+      setskinPlant(plant2);
       const plant3 = await axios.get(
         backendUrl + "/api/plants/digestion-herbs"
       );
@@ -160,6 +162,7 @@ const ShopContextProvider = (props) => {
     getCartAmount,
     getCartCount,
     updateQuantity,
+    skinPlant,
   };
   return (
     <ShopContext.Provider value={value}>{props.children}</ShopContext.Provider>

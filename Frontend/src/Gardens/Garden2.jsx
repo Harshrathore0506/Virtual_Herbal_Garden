@@ -55,7 +55,7 @@ const Garden2 = () => {
       {plants.map((plant, index) => (
         <NavLink
           key={plant._id}
-          to={`/plant2/${plant._id}`}
+          to={`/api/digestion-herbs/${plant._id}`}
           className="nav-name"
         >
           <div className={`hover-img${index}`}>

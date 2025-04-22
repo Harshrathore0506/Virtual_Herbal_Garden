@@ -31,14 +31,14 @@ import SingleRouter from "./routes/SingleRoute.js";
 app.use("/api/plants", plantRouter);
 app.use("/api/cart", cartRoute);
 
-app.get("/api/cardiovascular-herbs/:id", SingleCardiovascular);
-app.get("/api/skin-herbs/:id", SingleSkin);
-app.get("/api/immune-herbs/:id", SingleImmune);
-app.get("/api/respiratory-herbs/:id", SingleRespiratory);
-app.get("/api/nervous-herbs/:id", SingleNervous);
-app.get("/api/digestion-herbs/:id", SingleDigestion);
+// app.get("/api/cardiovascular-herbs/:id", SingleCardiovascular);
+// app.get("/api/skin-herbs/:id", SingleSkin);
+// app.get("/api/immune-herbs/:id", SingleImmune);
+// app.get("/api/respiratory-herbs/:id", SingleRespiratory);
+// app.get("/api/nervous-herbs/:id", SingleNervous);
+// app.get("/api/digestion-herbs/:id", SingleDigestion);
 
-// app.use("/api/single",SingleRouter);
+app.use("/api", SingleRouter);
 // Login
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
