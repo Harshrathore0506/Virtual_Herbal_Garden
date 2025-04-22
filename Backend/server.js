@@ -26,12 +26,16 @@ import plantRouter from "./routes/plantRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import userRouter from "./routes/userRoute.js";
 import orderRouter from "./routes/orderRoute.js";
-import plantsRouter from "./routes/plantsRoute.js";
 // ================================================================================================================
 app.use("/api/plants", plantRouter);
 app.use("/api/cart", cartRoute);
 
-app.use("/api/plant", plantsRouter);
+app.get("/api/cardiovascular-herbs/:id", SingleCardiovascular);
+app.get("/api/skin-herbs/:id", SingleSkin);
+app.get("/api/immune-herbs/:id", SingleImmune);
+app.get("/api/respiratory-herbs/:id", SingleRespiratory);
+app.get("/api/nervous-herbs/:id", SingleNervous);
+app.get("/api/digestion-herbs/:id", SingleDigestion);
 
 // Login
 app.use("/api/user", userRouter);
