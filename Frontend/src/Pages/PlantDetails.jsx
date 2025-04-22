@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 
 const PlantDetails = () => {
   const { id } = useParams(); // Get plant name from URL
-  const { addToCart, backendUrl } = useContext(ShopContext);
+  const { addToCart, backendUrl, getProductData } = useContext(ShopContext);
   const [herb, setHerb] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

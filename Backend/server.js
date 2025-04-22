@@ -26,6 +26,7 @@ import plantRouter from "./routes/plantRoute.js";
 import cartRoute from "./routes/cartRoute.js";
 import userRouter from "./routes/userRoute.js";
 import orderRouter from "./routes/orderRoute.js";
+import SingleRouter from "./routes/SingleRoute.js";
 // ================================================================================================================
 app.use("/api/plants", plantRouter);
 app.use("/api/cart", cartRoute);
@@ -37,6 +38,7 @@ app.get("/api/respiratory-herbs/:id", SingleRespiratory);
 app.get("/api/nervous-herbs/:id", SingleNervous);
 app.get("/api/digestion-herbs/:id", SingleDigestion);
 
+// app.use("/api/single",SingleRouter);
 // Login
 app.use("/api/user", userRouter);
 app.use("/api/order", orderRouter);
