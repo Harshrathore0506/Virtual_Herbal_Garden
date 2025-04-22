@@ -11,14 +11,6 @@ app.use(express.json());
 app.use(cors());
 
 // ============================================================================
-import {
-  cardiovascular,
-  skin,
-  respiratory,
-  nervous,
-  immune,
-  digestion,
-} from "./controllers/PlantsController.js";
 
 import {
   SingleSkin,
@@ -29,62 +21,22 @@ import {
   SingleRespiratory,
 } from "./controllers/SingleController.js";
 
-import {
-  loginUser,
-  registerUser,
-  adminLogin,
-} from "./controllers/userController.js";
-
-import {
-  placeOrder,
-  allOrders,
-  userOrders,
-  updateStatus,
-} from "./controllers/orderController.js";
-import adminAuth from "./Middleware/adminAuth.js";
-import authUser from "./Middleware/auth.js";
-
-import {
-  addToCart,
-  getUserCart,
-  updateCart,
-} from "./controllers/cartController.js";
 // Define schema for the collection (Dynamic Schema)
-
+import plantRouter from "./routes/plantRoute.js";
+import cartRoute from "./routes/cartRoute.js";
+import userRouter from "./routes/userRoute.js";
+import orderRouter from "./routes/orderRoute.js";
+import plantsRouter from "./routes/plantsRoute.js";
 // ================================================================================================================
+app.use("/api/plants", plantRouter);
+app.use("/api/cart", cartRoute);
 
-app.get("/api/cardiovascular-herbs", cardiovascular);
-app.get("/api/skin-herbs", skin);
-app.get("/api/immune-herbs", immune);
-app.get("/api/respiratory-herbs", respiratory);
-app.get("/api/nervous-herbs", nervous);
-app.get("/api/digestion-herbs", digestion);
-
-app.get("/api/cardiovascular-herbs/:id", SingleCardiovascular);
-app.get("/api/skin-herbs/:id", SingleSkin);
-app.get("/api/immune-herbs/:id", SingleImmune);
-app.get("/api/respiratory-herbs/:id", SingleRespiratory);
-app.get("/api/nervous-herbs/:id", SingleNervous);
-app.get("/api/digestion-herbs/:id", SingleDigestion);
+app.use("/api/plant", plantsRouter);
 
 // Login
-app.post("/api/user/register", registerUser);
-app.post("/api/user/login", loginUser);
-app.post("/api/user/admin", adminLogin);
-
+app.use("/api/user", userRouter);
+app.use("/api/order", orderRouter);
 //Admin Features
-app.post("/api/order/list", adminAuth, allOrders);
-app.post("/api/order/status", adminAuth, updateStatus);
-
-//Payment Features
-app.post("/api/order/place", authUser, placeOrder);
-
-//User Features
-app.post("/api/order/userorders", authUser, userOrders);
-
-app.post("/api/cart/get", authUser, getUserCart);
-app.post("/api/cart/add", authUser, addToCart);
-app.post("/api/cart/update", authUser, updateCart);
 
 app.get("/", (req, res) => {
   res.send("API Working");

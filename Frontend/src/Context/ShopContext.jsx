@@ -109,12 +109,18 @@ const ShopContextProvider = (props) => {
 
   const getProductData = async () => {
     try {
-      const plant1 = await axios.get(backendUrl + "/api/cardiovascular-herbs");
-      const plant2 = await axios.get(backendUrl + "/api/skin-herbs");
-      const plant3 = await axios.get(backendUrl + "/api/digestion-herbs");
-      const plant4 = await axios.get(backendUrl + "/api/respiratory-herbs");
-      const plant5 = await axios.get(backendUrl + "/api/nervous-herbs");
-      const plant6 = await axios.get(backendUrl + "/api/immune-herbs");
+      const plant1 = await axios.get(
+        backendUrl + "/api/plants/cardiovascular-herbs"
+      );
+      const plant2 = await axios.get(backendUrl + "/api/plants/skin-herbs");
+      const plant3 = await axios.get(
+        backendUrl + "/api/plants/digestion-herbs"
+      );
+      const plant4 = await axios.get(
+        backendUrl + "/api/plants/respiratory-herbs"
+      );
+      const plant5 = await axios.get(backendUrl + "/api/plants/nervous-herbs");
+      const plant6 = await axios.get(backendUrl + "/api/plants/immune-herbs");
 
       setProducts([
         ...plant1.data,

@@ -31,7 +31,7 @@ const Garden4 = () => {
   const fetchPlants = async () => {
     try {
       const response = await axios.get(
-        backendUrl + "/api/cardiovascular-herbs"
+        backendUrl + "/api/plants/cardiovascular-herbs"
       );
       setPlants(response.data);
     } catch (error) {

@@ -1,86 +1,84 @@
 import userModel from "../models/userSchema.js";
 import validator from "validator";
-import * as argon2 from "argon2-browser";
-import crypto from "crypto"; // ✅ Node.js crypto module
+import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
 const createToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_S);
 };
 
+//Route for User Login
+const loginUser = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
+    if (!user) {
+      return res.json({ success: false, message: "User doesn't exists" });
+    }
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (isMatch) {
+      const token = createToken(user._id);
+      res.json({ success: true, token, message: "Login Successfull" });
+    } else {
+      res.json({ success: false, message: "Invaild credentials" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error.message });
+  }
+};
+
+//Route for user register
 const registerUser = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-
+    //checking user already exists or not
     const exists = await userModel.findOne({ email });
     if (exists) {
       return res.json({ success: false, message: "User already exists" });
     }
 
+    // Validating email formate and strong password
     if (!validator.isEmail(email)) {
-      return res.json({ success: false, message: "Please Enter Valid Email" });
+      return res.json({
+        success: false,
+        message: "Please enter vaild email",
+      });
     }
-
     if (password.length < 8) {
       return res.json({
         success: false,
-        message: "Please enter a strong password",
+        message: "Please enter strong password",
       });
     }
 
-    const salt = crypto.randomBytes(16); // ✅ Secure salt for argon2-browser
-    const hash = await argon2.hash({ pass: password, salt });
-    const hashedPassword = hash.encoded;
+    // hashing user password
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    const newUser = new userModel({
-      name,
-      email,
-      password: hashedPassword,
-    });
-
+    const newUser = new userModel({ name, email, password: hashedPassword });
     const user = await newUser.save();
+
     const token = createToken(user._id);
+
     res.json({ success: true, token });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
   }
 };
-
-const loginUser = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-
-    const user = await userModel.findOne({ email });
-    if (!user) {
-      return res.json({ success: false, message: "User doesn't exist" });
-    }
-
-    const isMatch = await argon2.verify({ pass: password, encoded: user.password });
-    if (isMatch) {
-      const token = createToken(user._id);
-      res.json({ success: true, token, message: "Successful" });
-    } else {
-      res.json({ success: false, message: "Invalid credentials" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.json({ success: false, message: error.message });
-  }
-};
-
+//Route for admin login
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
-
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_S);
-      res.json({ success: true, token, message: "Successful admin" });
+      res.json({ success: true, token });
     } else {
-      res.json({ success: false, message: "Invalid Credentials" });
+      res.json({ success: false, message: "Invaild Credentials" });
     }
   } catch (error) {
     console.log(error);
@@ -88,4 +86,4 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { registerUser, loginUser, adminLogin };
+export { loginUser, registerUser, adminLogin };

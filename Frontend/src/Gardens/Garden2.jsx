@@ -29,7 +29,9 @@ const Garden2 = () => {
 
   const fetchPlants = async () => {
     try {
-      const response = await axios.get(backendUrl + "/api/digestion-herbs");
+      const response = await axios.get(
+        backendUrl + "/api/plants/digestion-herbs"
+      );
       setPlants(response.data);
     } catch (error) {
       console.error("Error fetching plants:", error);
