@@ -12,15 +12,6 @@ app.use(cors());
 
 // ============================================================================
 
-import {
-  SingleSkin,
-  SingleCardiovascular,
-  SingleDigestion,
-  SingleImmune,
-  SingleNervous,
-  SingleRespiratory,
-} from "./controllers/SingleController.js";
-
 // Define schema for the collection (Dynamic Schema)
 import plantRouter from "./routes/plantRoute.js";
 import cartRoute from "./routes/cartRoute.js";
