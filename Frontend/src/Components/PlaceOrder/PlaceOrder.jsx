@@ -109,22 +109,26 @@ const PlaceOrder = () => {
             required
           />
         </div>
-        <input
-          onChange={onChangeHandler}
-          name="email"
-          value={formData.email}
-          type="email"
-          placeholder="EMAIL ADDRESS"
-          required
-        />
-        <input
-          onChange={onChangeHandler}
-          name="street"
-          value={formData.street}
-          type="text"
-          placeholder="STREET"
-          required
-        />
+        <div className="input-group">
+          <input
+            onChange={onChangeHandler}
+            name="email"
+            value={formData.email}
+            type="email"
+            placeholder="EMAIL ADDRESS"
+            required
+          />
+        </div>
+        <div className="input-group">
+          <input
+            onChange={onChangeHandler}
+            name="street"
+            value={formData.street}
+            type="text"
+            placeholder="STREET"
+            required
+          />
+        </div>
         <div className="input-group">
           <input
             onChange={onChangeHandler}
@@ -161,14 +165,16 @@ const PlaceOrder = () => {
             required
           />
         </div>
-        <input
-          onChange={onChangeHandler}
-          name="phone"
-          value={formData.phone}
-          type="tel"
-          placeholder="PHONE"
-          required
-        />
+        <div>
+          <input
+            onChange={onChangeHandler}
+            name="phone"
+            value={formData.phone}
+            type="tel"
+            placeholder="PHONE"
+            required
+          />
+        </div>
       </div>
 
       {/* Right Side - Cart & Payment */}
