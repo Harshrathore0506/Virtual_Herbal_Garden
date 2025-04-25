@@ -1,22 +1,16 @@
-/* Footer Styles */
-/* Footer Styles */
 .footer {
   background-color: rgb(40, 141, 40);
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   color: white;
-  padding: 10px;
-  margin-top: auto; /* Pushes the footer to the bottom */
+  padding: 20px 40px;
+  flex-wrap: wrap;
+  text-align: center;
 }
 
-.footer p {
+.footer-top h1 {
   margin: 0;
-  font-size: 14px;
-}
-
-.footer-top {
-  margin-bottom: 10px;
 }
 
 .foot-name {
@@ -26,34 +20,26 @@
   font-weight: bold;
 }
 
-.foot-name i {
-  font-style: italic;
-}
-
 .footer-bottom {
   font-size: 14px;
-  text-align: center;
 }
 
 .footer-bottom p {
   margin: 5px 0;
 }
 
-.footer-bottom p:first-child {
-  font-weight: lighter;
-}
-
-/* Responsive Design */
 @media (max-width: 600px) {
   .footer {
-    padding: 15px 0;
+    flex-direction: column;
+    padding: 20px 10px;
+    gap: 10px;
   }
 
   .footer-top h1 {
     font-size: 20px;
   }
 
-  .footer-bottom p {
+  .footer-bottom {
     font-size: 12px;
   }
 }

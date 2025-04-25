@@ -1,0 +1,33 @@
+Base structure .App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Content pushes footer down */
+.main-content {
+  flex: 1;
+  padding: 20px;
+  padding-top: 50px;
+  margin-top: 40px;
+}
+
+/* Optional 404 Styling */
+.not-found {
+  padding: 40px;
+  text-align: center;
+  color: #b71c1c;
+  font-size: 24px;
+}
+
+/* Responsive spacing (optional) */
+@media (max-width: 768px) {
+  /* .main-content {
+    padding: 15px 10px;
+  } */
+
+  .not-found {
+    font-size: 20px;
+  }
+}

@@ -31,27 +31,33 @@ function App() {
       <div className="App">
         <ToastContainer />
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home1 />} />
-          <Route path="/Login" element={<Login />} />
-          <Route path="/Contact" element={<Contact />} />
-          <Route path="/About" element={<About />} />
-          <Route path="/Cart" element={<Cart />} />
-          <Route path="/Garden1" element={<Garden1 />} />
-          <Route path="/Garden2" element={<Garden2 />} />
-          <Route path="/Garden3" element={<Garden3 />} />
-          <Route path="/Garden4" element={<Garden4 />} />
-          <Route path="/Garden5" element={<Garden5 />} />
-          <Route path="/Garden6" element={<Garden6 />} />
-          <Route path="/plant/:id" element={<PlantDetails />} />
-          <Route path="/plant1/:id" element={<PlantDetails1 />} />
-          <Route path="/plant2/:id" element={<PlantDetails2 />} />
-          <Route path="/plant3/:id" element={<PlantDetails3 />} />
-          <Route path="/plant4/:id" element={<PlantDetails4 />} />
-          <Route path="/plant5/:id" element={<PlantDetails5 />} />
-          <Route path="/placeorder" element={<PlaceOrder />} />
-          <Route path="/orders" element={<Order />} />
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home1 />} />
+            <Route path="/Login" element={<Login />} />
+            <Route path="/Contact" element={<Contact />} />
+            <Route path="/About" element={<About />} />
+            <Route path="/Cart" element={<Cart />} />
+            <Route path="/Garden1" element={<Garden1 />} />
+            <Route path="/Garden2" element={<Garden2 />} />
+            <Route path="/Garden3" element={<Garden3 />} />
+            <Route path="/Garden4" element={<Garden4 />} />
+            <Route path="/Garden5" element={<Garden5 />} />
+            <Route path="/Garden6" element={<Garden6 />} />
+            <Route path="/plant/:id" element={<PlantDetails />} />
+            <Route path="/plant1/:id" element={<PlantDetails1 />} />
+            <Route path="/plant2/:id" element={<PlantDetails2 />} />
+            <Route path="/plant3/:id" element={<PlantDetails3 />} />
+            <Route path="/plant4/:id" element={<PlantDetails4 />} />
+            <Route path="/plant5/:id" element={<PlantDetails5 />} />
+            <Route path="/placeorder" element={<PlaceOrder />} />
+            <Route path="/orders" element={<Order />} />
+            <Route
+              path="*"
+              element={<h1 className="not-found">404 - Page Not Found</h1>}
+            />
+          </Routes>
+        </main>
         <Footer />
       </div>
     </>

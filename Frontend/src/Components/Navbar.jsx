@@ -1,11 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { NavLink, Link } from "react-router-dom";
 import Log from "../assets/avatar.png";
 import { ShopContext } from "../Context/ShopContext";
 import Swal from "sweetalert2";
+import { FiMenu, FiX } from "react-icons/fi"; // Hamburger icons
+
 const Navbar = () => {
   const { navigate, token, setToken } = useContext(ShopContext);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogout = () => {
     Swal.fire({
@@ -18,7 +21,6 @@ const Navbar = () => {
       confirmButtonText: "Yes, logout",
     }).then((result) => {
       if (result.isConfirmed) {
-        // Actual logout logic here
         navigate("/login");
         localStorage.removeItem("token");
         setToken("");
@@ -28,41 +30,51 @@ const Navbar = () => {
   };
 
   return (
-    <div className="nav">
-      <div className="Nav">
+    <div className="navbar-container">
+      <div className="navbar">
         <h1>
-          <NavLink to="/" className="nav-name">
+          <NavLink to="/" className="navbar-logo">
             <i>Virtual Garden</i>
           </NavLink>
         </h1>
-        <div className="Heading">
-          <NavLink to="/" className="nav-name">
+
+        <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          {menuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+        </div>
+
+        <div className={`navbar-links ${menuOpen ? "active" : ""}`}>
+          <NavLink to="/" className="nav-link" onClick={() => setMenuOpen(false)}>
             <p>Home</p>
           </NavLink>
-          <NavLink to="/orders" className="nav-name">
+          <NavLink to="/orders" className="nav-link" onClick={() => setMenuOpen(false)}>
             <p>Orders</p>
           </NavLink>
-          <NavLink to="/Cart" className="nav-name">
+          <NavLink to="/Cart" className="nav-link" onClick={() => setMenuOpen(false)}>
             <p>Cart</p>
           </NavLink>
-          <NavLink to="/Contact" className="nav-name">
+          <NavLink to="/Contact" className="nav-link" onClick={() => setMenuOpen(false)}>
             <p>Contact</p>
           </NavLink>
-          <div className="flex items-center gap-4">
-            {/* Login/Logout Icon */}
+          <div className="auth-section">
             {token ? (
               <img
-                onClick={handleLogout}
-                className="auth-img log-img"
+                onClick={() => {
+                  setMenuOpen(false);
+                  handleLogout();
+                }}
+                className="auth-img"
                 src={Log}
-                alt="Logout Icon"
+                alt="Logout"
               />
             ) : (
               <img
-                onClick={() => navigate("/login")}
-                className="auth-imgn log-img"
+                onClick={() => {
+                  navigate("/login");
+                  setMenuOpen(false);
+                }}
+                className="auth-img"
                 src={Log}
-                alt="Login Icon"
+                alt="Login"
               />
             )}
           </div>

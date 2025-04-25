@@ -1,21 +1,113 @@
+/* Base Styles */
 .home {
   background-image: url("../assets/Cover1.png");
-  height: 100vh;
   background-position: right;
   background-repeat: no-repeat;
-  padding: 0 30px;
   background-color: beige;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 80px 30px 0; /* Top padding added to prevent overlap with navbar */
+  position: relative;
 }
+
+/* Text Container */
 .home-para {
   width: 30%;
   display: flex;
   flex-direction: column;
   gap: 30px;
-  padding-top: 5%;
+  padding: 25px;
+  color: #2e4d2e;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-radius: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
-.home-h {
-  font-size: 50px;
-}
+
+/* Headings */
 .home-h1 {
   font-size: 80px;
+  margin: 0;
+  color: #1b5e20;
+}
+
+.home-h {
+  font-size: 50px;
+  margin: 0;
+  color: #33691e;
+}
+
+/* Paragraph */
+.home-p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4e342e;
+}
+
+/* ---------- Responsive Breakpoints ---------- */
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .home {
+    background-image: none;
+    padding: 100px 20px 20px; /* More top padding for mobile if navbar is taller */
+    align-items: flex-start;
+    min-height: auto;
+  }
+  .home-para {
+    width: 80%;
+  }
+
+  .home-h1 {
+    font-size: 60px;
+  }
+
+  .home-h {
+    font-size: 40px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .home {
+    background-image: none;
+    padding: 100px 20px 20px; /* More top padding for mobile if navbar is taller */
+    align-items: flex-start;
+    min-height: auto;
+  }
+
+  .home-para {
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .home-h1 {
+    font-size: 40px;
+  }
+
+  .home-h {
+    font-size: 30px;
+  }
+
+  .home-p {
+    font-size: 16px;
+  }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+  .home-h1 {
+    font-size: 32px;
+  }
+
+  .home-h {
+    font-size: 24px;
+  }
+
+  .home-p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
 }

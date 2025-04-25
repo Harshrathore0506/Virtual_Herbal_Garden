@@ -4,36 +4,87 @@
   gap: 60px;
   padding: 50px;
 }
+
 .Plant-img img {
   width: 350px;
+  border-radius: 10px;
 }
+
 .Plant-detail {
   display: grid;
   grid-auto-columns: 1fr;
   gap: 40px;
 }
+
 .Plants {
   display: flex;
   gap: 50px;
   font-size: 20px;
+  flex-wrap: wrap;
 }
+
 .Plants :first-child {
   width: 210px;
+  font-weight: bold;
 }
+
 .Plants :last-child {
   width: 60%;
 }
+
 .Plant_name {
   font-weight: 700;
 }
+
 .Btn {
   padding: 10px;
   border-radius: 20px;
   background-color: lightgreen;
-  width: 100px;
+  width: 120px;
   text-align: center;
   font-size: 18px;
   color: green;
   font-weight: 600;
   cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.Btn:hover {
+  background-color: #3b923b;
+  color: white;
+}
+
+/* ====================== Responsive ======================= */
+@media (max-width: 768px) {
+  .Plant-details {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .Plant-img img {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .Plant-detail {
+    gap: 20px;
+  }
+
+  .Plants {
+    flex-direction: column;
+    gap: 10px;
+    font-size: 16px;
+  }
+
+  .Plants :first-child,
+  .Plants :last-child {
+    width: 100%;
+  }
+
+  .Btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
 }

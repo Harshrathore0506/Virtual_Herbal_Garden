@@ -9,6 +9,15 @@ import Garden6 from "../Gardens/Garden6";
 
 const Garden = () => {
   const [gardenName, setGardenName] = useState("Skin");
+  const gardenOptions = [
+    { id: "Skin", label: "Skin Care" },
+    { id: "Digestive", label: "Digestive System" },
+    { id: "Respiratory", label: "Respiratory System" },
+    { id: "Cardiovascular", label: "Cardiovascular System" },
+    { id: "Nervous", label: "Nervous System" },
+    { id: "Immune", label: "Immune System" },
+  ];
+
   const renderContent = () => {
     switch (gardenName) {
       case "Skin":
@@ -29,61 +38,24 @@ const Garden = () => {
   return (
     <div className="garden">
       <div className="garden-type">
-        <button
-          onClick={() => setGardenName("Skin")}
-          style={{
-            border: gardenName === "Skin" ? "5px solid green" : "none",
-          }}
-          className="garden-p"
-        >
-          Skin Care
-        </button>
-        <button
-          onClick={() => setGardenName("Digestive")}
-          style={{
-            border: gardenName === "Digestive" ? "5px solid green" : "none",
-          }}
-          className="garden-p"
-        >
-          Digestive System
-        </button>
-        <button
-          onClick={() => setGardenName("Respiratory")}
-          className="garden-p"
-          style={{
-            border: gardenName === "Respiratory" ? "5px solid green" : "none",
-          }}
-        >
-          Respiratory System
-        </button>
-        <button
-          onClick={() => setGardenName("Cardiovascular")}
-          className="garden-p"
-          style={{
-            border:
-              gardenName === "Cardiovascular" ? "5px solid green" : "none",
-          }}
-        >
-          Cardiovascular System
-        </button>
-        <button
-          onClick={() => setGardenName("Nervous")}
-          style={{
-            border: gardenName === "Nervous" ? "5px solid green" : "none",
-          }}
-          className="garden-p"
-        >
-          Nerous System
-        </button>
-        <button
-          onClick={() => setGardenName("")}
-          style={{
-            border: gardenName === "" ? "5px solid green" : "none",
-          }}
-          className="garden-p"
-        >
-          Immune System
-        </button>
+        <div className="slider-container">
+          <div className="slider">
+            {gardenOptions.map((option) => (
+              <button
+                key={option.id}
+                onClick={() => setGardenName(option.id)}
+                className={`slider-btn ${
+                  gardenName === option.id ? "active" : ""
+                }`}
+                style={{
+                  border: gardenName === option.id ? "5px solid green" : "none",
+                }}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
 
       {renderContent()}
