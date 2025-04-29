@@ -108,7 +108,9 @@
 
 .hover-text {
   visibility: hidden;
+  text-decoration: none;
   background-color: green;
+  color: white;
   padding: 5px;
   border-radius: 20px;
   font-size: 20px;
