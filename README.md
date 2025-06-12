@@ -3,6 +3,14 @@
 
 **Virtual Herbal Garden** is an interactive web application that allows users to explore, learn, and manage various herbs digitally. The platform provides detailed information on medicinal plants, their benefits, and traditional uses. It promotes awareness and education about natural remedies and herbal knowledge.
 
+---
+
+## 🌐 Live Demo
+
+👉 [Click Here to Visit the Live Site](https://virtual-herbal-garden-fd.vercel.app/)  
+
+---
+
 ## 🌱 Features
 
 - 🌿 **Herb Catalog** – Browse various herbal plants with descriptions and images.
@@ -28,7 +36,15 @@
 ### Installation
 
 ```bash
-git clone https://github.com/your-username/virtual-herbal-garden.git
-cd virtual-herbal-garden
+git clone https://github.com/Harshrathore0506/Virtual_Herbal_Garden.git
+
+for frontend:-
+cd frontend
+npm install
+npm run dev
+
+for backend:-
+
+cd backend
 npm install
 npm start
