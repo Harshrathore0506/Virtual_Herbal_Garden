@@ -4,10 +4,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "node server.js",
+    "start": "node api.js && node server.js",
     "server": "nodemon server.js",
     "postinstall": "npm install bcryptjs",
-    "build": "echo \"No build step necessary for backend\""
+    "build": "node api.js && echo \"No build step necessary for backend\""
   },
   "keywords": [],
   "author": "",
